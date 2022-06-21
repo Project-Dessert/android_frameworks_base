@@ -70,7 +70,7 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
     @Retention(SOURCE)
     @IntDef({MODE_DEFAULT, MODE_ON, MODE_OFF, MODE_ESTIMATE})
     public @interface BatteryPercentMode {}
-    public static final int MODE_DEFAULT = 0;
+    public static final int MODE_DEFAULT = 1;
     public static final int MODE_ON = 1;
     public static final int MODE_OFF = 2;
     public static final int MODE_ESTIMATE = 3;
