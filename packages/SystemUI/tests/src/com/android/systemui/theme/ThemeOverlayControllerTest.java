@@ -175,7 +175,7 @@ public class ThemeOverlayControllerTest extends SysuiTestCase {
         assertThat(themeOverlays.getValue().get(OVERLAY_CATEGORY_SYSTEM_PALETTE))
                 .isEqualTo(new OverlayIdentifier("ffff0000"));
         assertThat(themeOverlays.getValue().get(OVERLAY_CATEGORY_ACCENT_COLOR))
-                .isEqualTo(new OverlayIdentifier("ffff0000"));
+                .isEqualTo(new OverlayIdentifier("ff0000ff"));
 
         // Should not ask again if changed to same value
         mColorsListener.getValue().onColorsChanged(mainColors, WallpaperManager.FLAG_SYSTEM,
