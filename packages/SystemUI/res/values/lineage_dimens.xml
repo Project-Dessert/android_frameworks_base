@@ -21,6 +21,4 @@
 
     <!-- Largest size an avatar might need to be drawn in the power menu user picker -->
     <dimen name="global_actions_avatar_size">24dp</dimen>
-
-    <dimen name="fps_info_text_padding">4dp</dimen>
 </resources>
