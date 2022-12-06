@@ -28,7 +28,6 @@ import android.annotation.RequiresPermission;
 import android.annotation.SystemApi;
 import android.annotation.SystemService;
 import android.annotation.TestApi;
-import android.app.compat.gms.GmsCompat;
 import android.app.usage.UsageStatsManager;
 import android.compat.Compatibility;
 import android.compat.annotation.ChangeId;
@@ -8269,10 +8268,6 @@ public class AppOpsManager {
      */
     public int noteOpNoThrow(int op, int uid, @Nullable String packageName,
             @Nullable String attributionTag, @Nullable String message) {
-        if (GmsCompat.isEnabled() && uid != Process.myUid()) {
-            return noteProxyOpNoThrow(op, packageName, uid, attributionTag, message);
-        }
-
         try {
             collectNoteOpCallsForValidation(op);
             int collectionMode = getNotedOpCollectionMode(uid, packageName, op);
@@ -8420,14 +8415,6 @@ public class AppOpsManager {
                 mContext.getAttributionSource(), new AttributionSource(proxiedUid,
                         proxiedPackageName, proxiedAttributionTag, mContext.getAttributionSource()
                         .getToken())), message,/*skipProxyOperation*/ false);
-    }
-
-    private int noteProxyOpNoThrow(int op, @Nullable String proxiedPackageName,
-            int proxiedUid, @Nullable String proxiedAttributionTag, @Nullable String message) {
-        return noteProxyOpNoThrow(op, new AttributionSource(
-                mContext.getAttributionSource(), new AttributionSource(proxiedUid,
-                proxiedPackageName, proxiedAttributionTag, mContext.getAttributionSource()
-                .getToken())), message,/*skipProxyOperation*/ false);
     }
 
     /**
@@ -8786,10 +8773,6 @@ public class AppOpsManager {
     public int startOpNoThrow(@NonNull IBinder token, int op, int uid, @NonNull String packageName,
             boolean startIfModeDefault, @Nullable String attributionTag, @Nullable String message,
             @AttributionFlags int attributionFlags, int attributionChainId) {
-        if (GmsCompat.isEnabled() && uid != Process.myUid()) {
-            return noteProxyOpNoThrow(op, packageName, uid, attributionTag, message);
-        }
-
         try {
             collectNoteOpCallsForValidation(op);
             int collectionMode = getNotedOpCollectionMode(uid, packageName, op);
@@ -9013,10 +8996,6 @@ public class AppOpsManager {
      */
     public void finishOp(IBinder token, int op, int uid, @NonNull String packageName,
             @Nullable String attributionTag) {
-        if (GmsCompat.isEnabled() && uid != Process.myUid()) {
-            return;
-        }
-
         try {
             mService.finishOperation(token, op, uid, packageName, attributionTag);
         } catch (RemoteException e) {
