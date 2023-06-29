@@ -90,7 +90,6 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
     @Override
     protected void onViewAttached() {
         super.onViewAttached();
-        mBrightnessMirrorHandler.onQsPanelAttached();
     }
 
     @Override

@@ -4191,10 +4191,6 @@ public final class NotificationPanelViewController implements Dumpable {
             requestScrollerTopPaddingUpdate(false /* animate */);
         }
         updateExpandedHeightToMaxHeight();
-
-        float qsExpansionFraction = computeQsExpansionFraction();
-        int qsPanelBottomY = calculateQsBottomPosition(qsExpansionFraction);
-        mScrimController.setQsPosition(qsExpansionFraction, qsPanelBottomY);
     }
 
     private final class NsslHeightChangedListener implements
